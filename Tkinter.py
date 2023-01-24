@@ -1,3 +1,16 @@
+def currency():
+    print(f'The cost in is')
+def add_label():
+    print("That is a new label")
+count = 0
+def counter():
+    global count
+    count+=1
+    btn4['text'] = f'Counter: {count}'
+
+
+
+
 import tkinter as tk
 win = tk.Tk()
 win.title('Графическое окно')
@@ -25,5 +38,28 @@ first method""",  #многострочный метод """
                    bd=20, #ширина самого фона
                    justify=tk.RIGHT # привязка
                    )
+btn1 = tk.Button(win, text='Argentina the world cup champione',
+                 command=currency                    #здесь мы указываем функцию и как мы можем ее использовать, фукция пишется
+                 # пишется над TK
+                 )
+btn2 = tk.Button(win, text='Argentina the best team',
+                 command=add_label                    #здесь мы указываем функцию и как мы можем ее использовать, фукция пишется
+                 # пишется над TK
+                 )
+btn3 = tk.Button(win, text='spain maybe win the next EURo',
+                 command=lambda: tk.Label(win, text="This is lambda").pack()                    #здесь мы указываем функцию и как мы можем ее использовать, фукция пишется
+                 # пишется над TK
+                 )
+btn4 = tk.Button(win, text=f'Counter: {count}',
+                 command=counter,
+                 activebackground="blue",
+                 bg="violet",
+                 state=tk.NORMAL
+                 )
+
+btn1.pack()
+btn2.pack()
+btn3.pack()
+btn4.pack()
 label_1.pack()
 tk.mainloop()
