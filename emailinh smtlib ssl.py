@@ -3,9 +3,8 @@ import smtplib, ssl
 port = 587  # For starttls
 smtp_server = "smtp.lesta.group"
 sender_email = "s_pasiukevich@lesta.group"
-receiver_email = "e_kuhto@lesta.group"
-password = input(""
-                 "")
+receiver_email = "barsik2gtii@yandex.ru"
+password = input("Type your password and press enter: ")
 message = """\
 Subject: Hi there
 
