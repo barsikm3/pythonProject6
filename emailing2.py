@@ -1,5 +1,5 @@
 import zmail
-server = zmail.server('barsik2gtii@yandex.ru', 'QWghbynth17')
+server = zmail.server('barsik2gtii@yandex.ru', '')
 
 # Send mail
 server.send_mail('e_kuhto@lesta.group',{'subject':'По сообщению в вк тимс:)','content_text':'ахахах :) классика, я вот себе таск нашел у Саши Прокудзина'})
