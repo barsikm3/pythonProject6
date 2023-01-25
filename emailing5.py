@@ -4,7 +4,7 @@ from email.message import EmailMessage
 
 # Define email sender and receiver
 email_sender = 'barsik2gtii@yandex.ru'
-email_password = 'QWghbynth17'
+email_password = ''
 email_receiver = 's_pasiukevich@lesta.group'
 
 # Set the subject and body of the email
