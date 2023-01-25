@@ -13,14 +13,14 @@ message["To"] = receiver_email
 
 # Create the plain-text and HTML version of your message
 text = """\
-Hi,
+Приветики,
 How are you?
 Real Python has many great tutorials:
 www.realpython.com"""
 html = """\
 <html>
   <body>
-    <p>Hi,<br>
+    <p>Привет,<br>
        How are you?<br>
        <a href="http://www.realpython.com">Real Python</a> 
        has many great tutorials.
@@ -40,7 +40,7 @@ message.attach(part2)
 
 # Create secure connection with server and send email
 context = ssl.create_default_context()
-with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+with smtplib.SMTP_SSL("smtp.yandex.ru", 465, context=context) as server:
     server.login(sender_email, password)
     server.sendmail(
         sender_email, receiver_email, message.as_string()
