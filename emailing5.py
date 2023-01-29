@@ -4,13 +4,13 @@ from email.message import EmailMessage
 
 # Define email sender and receiver
 email_sender = 'barsik2gtii@yandex.ru'
-email_password = ''
+email_password = input('ty:')
 email_receiver = 's_pasiukevich@lesta.group'
 
 # Set the subject and body of the email
 subject = 'Check out my new video!'
 body = """
-I've just published a new video on YouTube: https://youtu.be/2cZzP9DLlkg
+А I've just published a new video on YouTube: https://youtu.be/2cZzP9DLlkg
 """
 
 em = EmailMessage()
