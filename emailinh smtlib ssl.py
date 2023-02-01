@@ -8,9 +8,11 @@ from email.mime.application import MIMEApplication
 port = 587  # For starttls
 smtp_server = "smtp.lesta.group"
 sender_email = "s_pasiukevich@lesta.group"
-receiver_email = "a_prakudzin@lesta.group"
+receiver_email = "barsik2gtii@yandex.ru"
 password = input("Type your password and press enter: ")
 msg = MIMEMultipart()
+msg['Subject'] = "Сервис по автоматической рассылке"
+msg['From'] = "Приложение для рассылки писем сотрудникам"
 
 # msg.attach(MIMEText(" как опшен для не для HTML "))
 # with open("New Text Document.txt", "rb") as f:
@@ -30,15 +32,12 @@ html = """\
     <p>Добрый день,<br>
        Напоминаем, что в последний день в Минском офисе дд/мм/гггг вам нужно подойти туда<br>
        в Волну в 925 кабинет (Staff Records)<br>
-       и вот сюда ас велл<br>
+       и вот сюда <br>
        <a href="https://lesta.ru/ru">Лестовики</a>  
     </p>
   </body>
 </html>
 """
-
-msg['Subject'] = "Корпоративная приблуда"
-msg['From'] = "Excel, Word, PPX, PDF приаттачились"
 
 part1 = MIMEApplication(open('ExTest.xlsx', 'rb').read())
 part1.add_header('Content-Disposition', 'attachment', filename='ExTest.xlsx')
