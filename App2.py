@@ -1,4 +1,15 @@
 import tkinter as tk
+from tkinter import *
+from tkinter import ttk
+import pandas as pd
+
+def search(data):
+    value = data.widget.get()
+    if value == '':
+
+
+root.mainloop()
+import tkinter as tk
 import pandas as pd
 
 def autocomplete(event):

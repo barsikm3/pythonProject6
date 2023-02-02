@@ -16,11 +16,16 @@ root = tk.Tk()
 root.title("Excel Data Selector")
 
 # Create a ttk Combobox to select data
-select_data = ttk.Combobox(root, values=df['Email'].tolist(), state='readonly')
+select_data = ttk.Combobox(root, values=df['Email'].tolist(), state='normal')
 select_data.pack()
 
+lst = ['']
+
 # Function to display selected data
-def show_data():
+def show_data(event):
+    value = event.widget.get()
+    if value == '':
+        combo_box['value'] = lst
     selected = select_data.get()
     data = df.loc[df['column_name'] == selected]
     print(data)
