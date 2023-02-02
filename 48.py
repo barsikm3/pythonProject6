@@ -32,6 +32,23 @@ With ws
     Next cell
 End With
 
+End SubSub InsertDataIntoFilteredRows()
+
+Dim ws As Worksheet
+Set ws = ActiveSheet
+
+With ws
+    Dim lastRow As Long
+    lastRow = .Cells(.Rows.Count, 1).End(xlUp).Row
+    
+    Dim i As Long
+    For i = 1 To lastRow
+        If Not .Rows(i).Hidden Then
+            .Cells(i, 1).Value = "Inserted Data"
+        End If
+    Next i
+End With
+
 End Sub
 
 
