@@ -19,7 +19,7 @@ def show_options(*args):
         options_list.insert(tk.END, option)
 
 # Read data from excel file
-df = pd.read_excel("file.xlsx")
+df = pd.read_excel("Book23.xlsx")
 emails = df["Email"].tolist()
 
 root = tk.Tk()
@@ -40,6 +40,4 @@ options_list = tk.Listbox(root, height=20)
 options_list.pack()
 
 root.mainloop()
-
-
 
