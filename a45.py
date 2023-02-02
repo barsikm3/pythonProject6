@@ -6,7 +6,12 @@ def search(*args):
     input = select_data.get()
     if len(input) < 2:
         return
-    select_data['values'] = [email for email in emails if input in email]
+    matching = [email for email in emails if input in email]
+    if matching:
+        select_data['values'] = matching
+        select_data.set(matching[0])
+    else:
+        select_data['values'] = emails
 
 # Read data from excel file
 df = pd.read_excel("file.xlsx")
@@ -21,3 +26,4 @@ select_data.pack()
 select_data.bind("<KeyRelease>", search)
 
 root.mainloop()
+
