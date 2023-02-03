@@ -50,4 +50,10 @@
       <input type="button" value="/" onclick="form1.answer.value+='/'">
       <br><br>
       <input type="button" value="Gross" onclick="form1.answer.value = Math.round(form1.answer.value*1.15 + 5)">
-      <input type="button" value="Net" onclick="form1.answer.value = Math
+      <input type="button" value="Net" onclick="form1.answer.value = Math.round(form1.answer.value/100*87-5) ">
+      <br><br>
+
+    </form>
+    </div>
+    </body>
+    </html>
