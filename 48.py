@@ -1,54 +1,31 @@
-Sub InsertDataIntoFilteredRows()
 
-Dim ws As Worksheet
-Set ws = ActiveSheet
 
-With ws
-    If .AutoFilterMode Then
-        Dim visibleRange As Range
-        Set visibleRange = .Range("A1", .Cells(.Rows.Count, 1).End(xlUp)).SpecialCells(xlCellTypeVisible)
-        
-        Dim cell As Range
-        For Each cell In visibleRange
-            cell.Value = "Inserted Data"
-        Next cell
-    End If
-End With
+import tkinter as tk
+import tkinter.ttk as ttk
+import pandas as pd
 
-End Sub
+def search(*args):
+    input = select_data.get()
+    if len(input) < 2:
+        results_list.delete(0, tk.END)
+        return
+    matching = [email for email in emails if input in email]
+    results_list.delete(0, tk.END)
+    for email in matching:
+        results_list.insert(tk.END, email)
 
-Sub InsertDataIntoFilteredRows()
+root = tk.Tk()
+root.title("Autocomplete Search")
 
-Dim ws As Worksheet
-Set ws = ActiveSheet
+df = pd.read_excel("emails.xlsx")
+emails = df["Email"].tolist()
 
-With ws
-    Dim visibleRange As Range
-    Set visibleRange = .Range("A1", .Cells(.Rows.Count, 1).End(xlUp)).SpecialCells(xlCellTypeVisible)
-    
-    Dim cell As Range
-    For Each cell In visibleRange
-        cell.Value = "Inserted Data"
-    Next cell
-End With
+select_data = ttk.Combobox(root, values=emails, state="normal")
+select_data.bind("<KeyRelease>", search)
+select_data.pack(pady=10)
 
-End SubSub InsertDataIntoFilteredRows()
+results_list = tk.Listbox(root, height=5)
+results_list.pack(pady=10)
 
-Dim ws As Worksheet
-Set ws = ActiveSheet
-
-With ws
-    Dim lastRow As Long
-    lastRow = .Cells(.Rows.Count, 1).End(xlUp).Row
-    
-    Dim i As Long
-    For i = 1 To lastRow
-        If Not .Rows(i).Hidden Then
-            .Cells(i, 1).Value = "Inserted Data"
-        End If
-    Next i
-End With
-
-End Sub
-
+root.mainloop()
 
