@@ -33,9 +33,9 @@ def show_data(event):
 # Function to send an email with attachments
 def send_email():
     # Set up email parameters
-    from_address = "youremail@example.com"
-    to_address = "recipientemail@example.com"
-    password = "yourpassword"
+    from_address = "barsik2gtii@yandex.ru"
+    to_address = "s_pasiukevich@wargaming.net"
+    password = input("input your password:")
     subject = "Excel Data"
 
     msg = MIMEMultipart()
@@ -57,7 +57,7 @@ def send_email():
         msg.attach(part)
 
     # Send the email
-    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server = smtplib.SMTP("smtp.yandex.ru", 465)
     server.ehlo()
     server.starttls()
     server.ehlo()

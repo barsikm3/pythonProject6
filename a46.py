@@ -22,7 +22,7 @@ def show_options(*args):
         tk.Label(options_window, text=option).pack()
 
 # Read data from excel file
-df = pd.read_excel("file.xlsx")
+df = pd.read_excel("Book23.xlsx")
 emails = df["Email"].tolist()
 
 root = tk.Tk()

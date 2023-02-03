@@ -12,7 +12,7 @@ def search(*args):
     results_data.current(0)
 
 # Read data from excel file
-df = pd.read_excel("file.xlsx")
+df = pd.read_excel("Book23.xlsx")
 emails = df["Email"].tolist()
 
 root = tk.Tk()
@@ -25,7 +25,7 @@ select_data.bind("<KeyRelease>", search)
 select_data.bind("<FocusIn>", lambda e: search())
 
 # Create second combobox widget
-results_data = ttk.Combobox(root, state="readonly")
+results_data = ttk.Combobox(root, values=[], height=5, state="readonly")
 results_data.pack()
 results_data.bind("<<ComboboxSelected>>", lambda e: select_data.set(results_data.get()))
 
