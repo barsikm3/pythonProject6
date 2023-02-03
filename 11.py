@@ -43,6 +43,7 @@ select_data = ttk.Combobox(root, values=[], state="normal")
 select_data.bind("<KeyRelease>", search)
 select_data.pack(pady=10)
 
+
 results_list = tk.Listbox(root, height=5)
 results_list.pack(pady=10)
 results_list.bind("<Button-1>", select_email)
