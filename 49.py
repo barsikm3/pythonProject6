@@ -19,7 +19,7 @@ def select_email(*args):
 root = tk.Tk()
 root.title("Autocomplete Search")
 
-df = pd.read_excel("emails.xlsx")
+df = pd.read_excel("Book23.xlsx")
 emails = df["Email"].tolist()
 
 select_data = ttk.Combobox(root, values=emails, state="normal")
