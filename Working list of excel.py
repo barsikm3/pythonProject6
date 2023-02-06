@@ -27,6 +27,7 @@ def select_email(*args):
         selected_row = int(results_list.get(selection[0]).split(" ")[1]) - 1
         selected_data = df.iloc[selected_row].tolist()
         select_data.set(f"Row {selected_row + 1}: " + ", ".join([str(x) for x in selected_data]))
+        select_data.set(selection)
 
 
 def load_file(*args):
