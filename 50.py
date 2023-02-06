@@ -17,7 +17,7 @@ def search(*args):
             if input in str(cell_value):
                 matching.append((i, cell_value))
     for i, e in matching:
-        results_list.insert(tk.END, f"Row {i+1}, Column {df.columns[j]}: {e}")
+        results_list.insert(tk.END, f"{i+1}, {df.columns[j]}: {e}")
 
 
 def select_email(*args):
@@ -34,6 +34,7 @@ def load_file(*args):
     df = pd.read_excel(file_path)
 
 
+
 root = tk.Tk()
 root.title("Autocomplete Search")
 
@@ -41,8 +42,8 @@ select_data = ttk.Combobox(root, state="normal")
 select_data.bind("<KeyRelease>", search)
 select_data.pack(pady=10)
 
-results_list = tk.Listbox(root, height=5)
-results_list.pack(pady=10)
+results_list = tk.Listbox(root, height=10)
+results_list.pack(pady=25)
 results_list.bind("<Button-1>", select_email)
 
 load_button = tk.Button(root, text="Load Excel File", command=load_file)
