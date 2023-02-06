@@ -50,7 +50,7 @@ results_list.bind("<Button-1>", select_email)
 load_button = tk.Button(root, text="Load Excel File", command=load_file)
 load_button.pack(pady=10)
 
-column_dropdown = ttk.Combobox(root, state="enabled")
+column_dropdown = ttk.Combobox(root, state="disabled")
 column_dropdown.pack(pady=10)
 column_dropdown.bind("<<ComboboxSelected>>", lambda e: setattr(df, "selected_column", column_dropdown.get()))
 
