@@ -16,8 +16,10 @@ def search(*args):
 
 
 def select_email(*args):
-    selection = results_list.get(results_list.curselection())
-    select_data.set(selection)
+    selection = results_list.curselection()
+    if selection:
+        selection = results_list.get(selection[0])
+        select_data.set(selection)
 
 
 def load_file(*args):
