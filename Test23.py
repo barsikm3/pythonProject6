@@ -1,6 +1,21 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 import pandas as pd
+from tkinter import filedialog
+
+def select_file():
+    file_path = filedialog.askopenfilename(filetypes=[("Excel Files", "*xlsx")])
+    df = pd.read_excel(file_path, sheet_name=None)
+    column_names = list(df.columns)
+    column_var.set(column_names[0])
+    column_options['values'] = column_names
+
+def update_results(search_value):
+    selected_column = column_var.get()
+    results = df[df[selected_column].str.contains(search_value, case=False)].loc[:, selected_column].tolist()
+    result_list.delete(0, tk.END)
+    for result in results[:5]:
+        result_list.insert(tk.END, result)
 
 def search(*args):
     input = select_data.get()
@@ -23,6 +38,14 @@ def select_email(*args):
 
 window = tk.Tk()
 window.title = ('Corporate automate selection')
+
+file_button = tk.Button(window, text="Select Excel File", command=select_file)
+file_button.bind("<KeyRelease>", search)
+file_button.pack(pady=10)
+
+column_var = tk.StringVar()
+column_options = ttk.Combobox(window, textvariable=column_var, state="readonly")
+column_options.pack()
 
 df = pd.read_excel('Book23.xlsx')
 emails = df["Email"].tolist()
