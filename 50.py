@@ -20,6 +20,7 @@ def search(*args):
         results_list.insert(tk.END, f"{i+1}, {df.columns[j]}: {e}")
 
 
+
 def select_email(*args):
     selection = results_list.curselection()
     if selection:
