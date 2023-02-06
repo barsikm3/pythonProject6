@@ -13,8 +13,10 @@ def search(*args):
         results_list.insert(tk.END, email)
 
 def select_email(*args):
-    selection = results_list.get(results_list.curselection())
-    select_data.set(selection)
+    selection = results_list.curselection()
+    if selection:
+        selection = results_list.get(selection[0])
+        select_data.set(selection)
 
 root = tk.Tk()
 root.title("Autocomplete Search")
