@@ -17,7 +17,7 @@ def search(*args):
             if input in str(cell_value):
                 matching.append((i, cell_value))
     for i, e in matching:
-        results_list.insert(tk.END, f"{i+1}, {df.columns[j]}: {e}")
+        results_list.insert(tk.END, f"{e}")
 
 
 
