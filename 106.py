@@ -1,8 +1,14 @@
+import tkinter as tk
+from tkinter import filedialog
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import smtplib
+
 def send_email(*args):
     # Set up email parameters
-    from_address = input("input your email:")
-    to_address = input(f"{select_data}")
-    password = input("input your password:")
+    from_address = entry_from.get()
+    to_address = select_data.get()
+    password = entry_pwd.get()
     subject = "Excel Data"
 
     msg = MIMEMultipart()
@@ -31,3 +37,26 @@ def send_email(*args):
     server.login(from_address, password)
     server.sendmail(from_address, to_address, msg.as_string())
     server.quit()
+
+root = tk.Tk()
+root.title("Send Email")
+
+label_from = tk.Label(root, text="From:")
+label_from.grid(row=0, column=0, pady=10)
+
+entry_from = tk.Entry(root)
+entry_from.grid(row=0, column=1, pady=10)
+
+label_pwd = tk.Label(root, text="Password:")
+label_pwd.grid(row=1, column=0, pady=10)
+
+entry_pwd = tk.Entry(root, show="*")
+entry_pwd.grid(row=1, column=1, pady=10)
+
+select_data = tk.Entry(root)
+select_data.grid(row=2, column=1, pady=10)
+
+button = tk.Button(root, text="Send", command=send_email)
+button.grid(row=3, column=1, pady=10)
+
+root.mainloop()
