@@ -1,62 +1,32 @@
-import tkinter as tk
-from tkinter import filedialog
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-import smtplib
-
-def send_email(*args):
-    # Set up email parameters
-    from_address = entry_from.get()
-    to_address = select_data.get()
-    password = entry_pwd.get()
-    subject = "Excel Data"
-
-    msg = MIMEMultipart()
-    msg['From'] = from_address
-    msg['To'] = to_address
-    msg['Subject'] = subject
-
-    # Select attachments
-    root.filename = \
-        filedialog.askopenfilenames(initialdir = "/", title = "Select files", filetypes =
-        (("all files","*.*"),("jpeg files","*.jpg"),("png files","*.png"),("pdf files","*.pdf"),("text files","*.txt")))
-    for file in root.filename:
-        with open(file, "rb") as f:
-            part = MIMEBase("application", "octet-stream")
-            part.set_payload(f.read())
-
-        encoders.encode_base64(part)
-        part.add_header("Content-Disposition",f"attachment; filename={file}")
-        msg.attach(part)
-
-    # Send the email
-    server = smtplib.SMTP("smtp.yandex.ru", 465)
-    server.ehlo()
-    server.starttls()
-    server.ehlo()
-    server.login(from_address, password)
-    server.sendmail(from_address, to_address, msg.as_string())
-    server.quit()
-
 root = tk.Tk()
-root.title("Send Email")
+root.title("Autocomplete Search")
 
-label_from = tk.Label(root, text="From:")
-label_from.grid(row=0, column=0, pady=10)
+select_data = ttk.Combobox(root, state="normal")
+select_data.bind("<KeyRelease>", search)
+select_data.pack(pady=10)
 
-entry_from = tk.Entry(root)
-entry_from.grid(row=0, column=1, pady=10)
+email_label = ttk.Label(root, text="Email:")
+email_label.pack()
+email = ttk.Entry(root, show="*")
+email.pack()
 
-label_pwd = tk.Label(root, text="Password:")
-label_pwd.grid(row=1, column=0, pady=10)
+password_label = ttk.Label(root, text="Password:")
+password_label.pack()
+password = ttk.Entry(root, show="*")
+password.pack()
 
-entry_pwd = tk.Entry(root, show="*")
-entry_pwd.grid(row=1, column=1, pady=10)
+results_list = tk.Listbox(root, height=10)
+results_list.pack(pady=25)
+results_list.bind("<Button-1>", select_email)
 
-select_data = tk.Entry(root)
-select_data.grid(row=2, column=1, pady=10)
+load_button = tk.Button(root, text="Load Excel File", command=load_file)
+load_button.pack(pady=10)
 
-button = tk.Button(root, text="Send", command=send_email)
-button.grid(row=3, column=1, pady=10)
+attach_button = tk.Button(root, text="Select Attachments", command=lambda: select_attachments(root))
+attach_button.pack(pady=10)
+
+send_button = tk.Button(root, text="Send Email", command=lambda: send_email(root, email, password))
+send_button.pack(pady=10)
 
 root.mainloop()
+
