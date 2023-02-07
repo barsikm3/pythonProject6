@@ -2,6 +2,13 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import pandas as pd
 from tkinter import filedialog
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
+from tkinter import filedialog
+from tkinter import ttk
 
 
 def search(*args):
@@ -20,6 +27,7 @@ def search(*args):
 
 
 def select_email(*args):
+    global selected_value
     selection = results_list.curselection()
     if selection:
         selected_value = results_list.get(selection[0])
@@ -47,5 +55,6 @@ results_list.bind("<Button-1>", select_email)
 
 load_button = tk.Button(root, text="Load Excel File", command=load_file)
 load_button.pack(pady=10)
+
 
 root.mainloop()
