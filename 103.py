@@ -22,9 +22,8 @@ def search(*args):
 def select_email(*args):
     selection = results_list.curselection()
     if selection:
-        selected_row = int(results_list.get(selection[0]).split(" ")[1]) - 1
-        selected_data = df.iloc[selected_row].tolist()
-        select_data.set(f"Row {selected_row + 1}: " + ", ".join([str(x) for x in selected_data]))
+        selected_value = results_list.get(selection[0])
+        select_data.set(selected_value)
 
 
 def load_file(*args):
@@ -41,4 +40,12 @@ select_data = ttk.Combobox(root, state="normal")
 select_data.bind("<KeyRelease>", search)
 select_data.pack(pady=10)
 
-results_list = tk.Listbox(root)
+
+results_list = tk.Listbox(root, height=10)
+results_list.pack(pady=25)
+results_list.bind("<Button-1>", select_email)
+
+load_button = tk.Button(root, text="Load Excel File", command=load_file)
+load_button.pack(pady=10)
+
+root.mainloop()
