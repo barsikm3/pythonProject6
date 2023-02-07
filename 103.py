@@ -40,39 +40,23 @@ def load_file(*args):
     df = pd.read_excel(file_path)
     results_list["height"] = min(10, df.shape[0])
 
-def send_email():
-    # Set up email parameters
-    from_address = select_data.get()
-    to_address = "s_pasiukevich@wargaming.net"
-    password = input("input your password:")
-    subject = "Excel Data"
+def send_email(recipient):
+    # Replace the following values with your own email account details
+    sender = 'barsik2gtii@yandex.ru'
+    password = 'QWghbynth17'
+    message = 'Subject: Test Email\n\nThis is a test email sent from Python.'
 
-    msg = MIMEMultipart()
-    msg['From'] = from_address
-    msg['To'] = to_address
-    msg['Subject'] = subject
-
-    # Select attachments
-    root.filename = \
-        filedialog.askopenfilenames(initialdir = "/", title = "Select files", filetypes =
-        (("all files","*.*"),("jpeg files","*.jpg"),("png files","*.png"),("pdf files","*.pdf"),("text files","*.txt")))
-    for file in root.filename:
-        with open(file, "rb") as f:
-            part = MIMEBase("application", "octet-stream")
-            part.set_payload(f.read())
-
-        encoders.encode_base64(part)
-        part.add_header("Content-Disposition",f"attachment; filename={file}")
-        msg.attach(part)
-
-    # Send the email
-    server = smtplib.SMTP("smtp.yandex.ru", 465)
+    server = smtplib.SMTP('smtp.yandex.ru', 465) # Replace with your own SMTP server details
     server.ehlo()
     server.starttls()
     server.ehlo()
-    server.login(from_address, password)
-    server.sendmail(from_address, to_address, msg.as_string())
+    server.login(sender, password)
+    server.sendmail(sender, recipient, message)
     server.quit()
+
+def on_value_selected(event):
+    recipient = select_data.get()
+    send_email(recipient)
 
 
 root = tk.Tk()
@@ -90,8 +74,8 @@ results_list.bind("<Button-1>", select_email)
 load_button = tk.Button(root, text="Load Excel File", command=load_file)
 load_button.pack(pady=10)
 
-send_button = tk.Button(root, text="Send Email", command=send_email)
-send_button.pack(pady=10)
-
-
+combobox = tk.ttk.Combobox(root, values=[])
+combobox.bind('<<ComboboxSelected>>', on_value_selected)
+combobox.pack()
 root.mainloop()
+
