@@ -39,6 +39,7 @@ def load_file(*args):
 
 root = tk.Tk()
 root.title("Autocomplete Search")
+root.geometry("500x400")
 
 select_data = ttk.Combobox(root, state="normal")
 select_data.bind("<KeyRelease>", search)
