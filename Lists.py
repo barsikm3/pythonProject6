@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.ttk as ttk
 
 def create_new_list():
     selected_value = combobox.get()
