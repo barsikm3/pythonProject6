@@ -42,13 +42,14 @@ def load_file(*args):
 
 def create_new_list():
     selected_value = select_data.get()
-    new_list = (selected_value)
-    print(new_list)
+    print(selected_value)
+    return selected_value
+
 def send_email():
     # Set up email parameters
     from_address = "barsik2gtii@yandex.ru"
     to_address = create_new_list
-    password = input("input your password:")
+    password = "QWghbynth17"
     subject = "Excel Data"
 
     msg = MIMEMultipart()
