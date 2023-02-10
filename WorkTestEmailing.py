@@ -58,6 +58,7 @@ def send_email():
         server.ehlo()  # Can be omitted
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, msg.as_string())
+        exit(0)
 
 root = tk.Tk()
 root.title("Excel Data Selector")
@@ -79,6 +80,9 @@ send_button.pack()
 # Start tkinter GUI event loop
 root.mainloop()
 root.quit()
+
+
+
 
 
 
