@@ -13,7 +13,7 @@ from tkinter import ttk
 def send_email():
     port = 587  # For starttls
     smtp_server = "smtp.lesta.group"
-    sender_email = "s_pasiukevich@lesta.group"
+    sender_email = email_entry.get()
     receiver_email = "barsik2gtii@yandex.ru"
     password = password_entry.get()
     msg = MIMEMultipart()
@@ -65,9 +65,13 @@ root.title("Excel Data Selector")
 # Create a tkinter button to trigger the function to send email
 password_label = tk.Label(root, text="Password")
 password_entry = tk.Entry(root, show="")
+email_label = tk.Label(root, text="Put your email")
+email_entry = tk.Entry(root, show="")
 
 send_button = tk.Button(root, text="Send Email", command=send_email)
 
+email_label.pack()
+email_entry.pack()
 password_label.pack()
 password_entry.pack()
 send_button.pack()
