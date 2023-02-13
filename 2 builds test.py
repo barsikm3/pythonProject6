@@ -10,12 +10,46 @@ from tkinter import filedialog
 from tkinter import ttk
 
 
+def search(*args):
+    input = select_data.get()
+    if len(input) < 2:
+        return
+    matching = []
+    for i in range(df.shape[0]):
+        for j in range(df.shape[1]):
+            cell_value = df.iloc[i, j]
+            if input in str(cell_value):
+                matching.append((i, cell_value))
+    results_list.delete(0, tk.END)
+    for i, e in matching:
+        results_list.insert(tk.END, f"{e}")
+
+
+def select_email(*args):
+    global selected_value
+    selection = results_list.curselection()
+    if selection:
+        selected_value = results_list.get(selection[0])
+        select_data.set(selected_value)
+
+
+def load_file(*args):
+    global df
+    file_path = filedialog.askopenfilename()
+    df = pd.read_excel(file_path)
+    results_list["height"] = min(10, df.shape[0])
+
+def create_new_list():
+    selected_value = select_data.get()
+    print(selected_value)
+    return selected_value
+
 
 def send_email():
     port = 587  # For starttls
     smtp_server = "smtp.lesta.group"
     sender_email = email_entry.get()
-    receiver_email = "g_anapreenko@lesta.group"
+    receiver_email = create_new_list()
     password = password_entry.get()
     msg = MIMEMultipart()
     msg['Subject'] = "Сервис по автоматической рассылке"
@@ -76,23 +110,35 @@ password_label = tk.Label(root, text="Password")
 password_entry = tk.Entry(root, show="*")
 email_label = tk.Label(root, text="Put your email")
 email_entry = tk.Entry(root, show="")
+email_sending = tk.Label(root, text="Receiver of the email")
+email_sending = tk.Entry(root, show="")
 menu = tk.OptionMenu(root, tk.StringVar(), *["Check"], command=check_password)
 
 send_button = tk.Button(root, text="Send Email", command=send_email)
 
+select_data = ttk.Combobox(root, state="normal")
+select_data.bind("<KeyRelease>", search)
+select_data.pack(pady=10)
+
+
+results_list = tk.Listbox(root, height=10)
+results_list.pack(pady=25)
+results_list.bind("<Button-1>", select_email)
+
+load_button = tk.Button(root, text="Load Excel File", command=load_file)
+load_button.pack(pady=10)
+
+create_new_list_button = tk.Button(root, text="Choosen Email", command=create_new_list)
+create_new_list_button.pack()
+
+
 email_label.pack()
 email_entry.pack()
+email_sending.pack()
 password_label.pack()
 password_entry.pack()
 send_button.pack()
-menu.pack()
 
 # Start tkinter GUI event loop
 root.mainloop()
 root.quit()
-
-
-
-
-
-

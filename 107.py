@@ -45,6 +45,7 @@ def create_new_list():
     print(selected_value)
     return selected_value
 
+
 def send_email():
     # Set up email parameters
     from_address = "barsik2gtii@yandex.ru"
@@ -67,6 +68,7 @@ def send_email():
     server.login(from_address, password)
     server.sendmail(from_address, to_address, msg.as_string())
     server.quit()
+    exit(0)
 
 
 
