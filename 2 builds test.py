@@ -105,6 +105,13 @@ def check_password(value):
 root = tk.Tk()
 root.title("Excel Data Selector")
 
+html = tk.Text(root, height=10, width=50)
+html.pack()
+html.config(state="normal")
+html.insert(tk.END, "This text")
+html.tag_add("redact", "1.0", tk.END)
+html.tag_config("redact", foreground="black", background="white")
+
 # Create a tkinter button to trigger the function to send email
 password_label = tk.Label(root, text="Password")
 password_entry = tk.Entry(root, show="*")
@@ -112,7 +119,7 @@ email_label = tk.Label(root, text="Put your email")
 email_entry = tk.Entry(root, show="")
 #email_sending = tk.Label(root, text="Receiver of the email")
 #email_sending = tk.Entry(root, show="")
-menu = tk.OptionMenu(root, tk.StringVar(), *["Check"], command=check_password)
+menu = ttk.OptionMenu(root, tk.StringVar(), *["Check"], command=check_password)
 
 send_button = tk.Button(root, text="Send Email", command=send_email)
 
