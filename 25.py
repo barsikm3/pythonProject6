@@ -2,34 +2,26 @@ import tkinter as tk
 
 root = tk.Tk()
 
-# Create a font object to use in the Text widget
-my_font = ("Arial", 12)
-
-# Create a Text widget with the font object
-text = tk.Text(root, height=10, width=50, font=my_font)
+text = tk.Text(root, height=10, width=50)
 text.pack()
 
-# Insert some text with a hyperlink
-text.insert(tk.END, "This is some text with a ")
-text.insert(tk.END, "hyperlink", ("hyperlink", "underline"))
-text.insert(tk.END, ".\n")
+# Insert some text
+text.insert(tk.END, "This is some text that can be redacted.")
 
-# Define a function to handle clicking the hyperlink
-def callback(event):
-    text.tag_configure("hyperlink", foreground="blue")
-    webbrowser.open_new(event.widget.get("current linestart", "current lineend"))
+# Create a custom tag called "redact"
+text.tag_configure("redact", foreground="black", background="black")
 
-# Add a tag for the hyperlink and bind it to the callback function
-text.tag_configure("hyperlink", foreground="blue", underline=1)
-text.tag_bind("hyperlink", "<Button-1>", callback)
+def toggle_redact():
+    # Get the current state of the "redact" tag
+    current_state = text.tag_configure("redact")["background"]
+    if current_state == "black":
+        # If the tag is currently redacted, change it to be unredacted
+        text.tag_configure("redact", foreground="black", background="white")
+    else:
+        # If the tag is currently unredacted, change it to be redacted
+        text.tag_configure("redact", foreground="black", background="black")
 
-# Create a button to copy the text to the clipboard
-def copy_text():
-    root.clipboard_clear()
-    root.clipboard_append(text.get("1.0", tk.END))
-
-button_copy = tk.Button(root, text="Copy", command=copy_text)
-button_copy.pack()
+button = tk.Button(root, text="Redact", command=toggle_redact)
+button.pack()
 
 root.mainloop()
-
