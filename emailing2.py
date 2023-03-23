@@ -1,8 +1,8 @@
 import zmail
-server = zmail.server('barsik2gtii@yandex.ru', '')
+server = zmail.server('', '')
 
 # Send mail
-server.send_mail('e_kuhto@lesta.group',{'subject':'По сообщению в вк тимс:)','content_text':'ахахах :) классика, я вот себе таск нашел у Саши Прокудзина'})
+server.send_mail('',{'subject':'По сообщению в вк тимс:)','content_text':'ахахах :) '})
 # Or to a list of friends.
 #server.send_mail(['n_gulko@lesta.group','s_pasiukevich@lesta.group'],{'subject':'Код для рассылки готов','content_text':'Тестовый код by Python масс рассылка'})
 
