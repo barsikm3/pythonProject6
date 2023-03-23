@@ -11,7 +11,7 @@ config = fileutil.social
 
 def send_invite(param):
     CRLF = "\r\n"
-    attendees = param['s_pasiukevich@lesta.group']
+    attendees = param['']
     attendees = ""
     try:
         for att in param['to']:
