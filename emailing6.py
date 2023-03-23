@@ -11,11 +11,11 @@ server = 'smtp.lesta.group'
 user = 's_pasiukevich@lesta.group'
 password = input("Type your password and press enter: ")
 
-recipients = ['a_prakudzin@lesta.group', 'a_dyupon@lesta.group']
-sender = 's_pasiukevich@lesta.group'
-subject = 'Вы от нас уходите? Какая жаль'
+recipients = ['', '']
+sender = ''
+subject = ''
 text = 'Добрый день, ' \
-       'Напоминаем, что в последний день вам надо побегать по этажам, движение - жизнь <b>да, прям побегать</b> fg совсем-совсем <h1> ну да</h1> бывают огорчения в жизни'
+       'Напоминаем, '
 html = '<html><head></head><body><p>' + text + '</p></body></html>'
 
 filepath = "scale_1200.jpeg"
