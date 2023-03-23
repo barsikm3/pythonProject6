@@ -4,8 +4,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 
-sender_email = "s_pasiukevich@"
-receiver_email = "s_pasiukevich@lesta.group"
+sender_email = ""
+receiver_email = ""
 password = input("Type your password and press enter:")
 
 message = MIMEMultipart("alternative")
