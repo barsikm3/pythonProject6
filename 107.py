@@ -50,7 +50,7 @@ def send_email():
     # Set up email parameters
     from_address = "barsik2gtii@yandex.ru"
     to_address = create_new_list
-    password = "QWghbynth17"
+    password = ""
     subject = "Excel Data"
 
     msg = MIMEMultipart()
