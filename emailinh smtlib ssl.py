@@ -7,8 +7,8 @@ from email.mime.application import MIMEApplication
 
 port = 587  # For starttls
 smtp_server = "smtp.lesta.group"
-sender_email = "s_pasiukevich@lesta.group"
-receiver_email = "barsik2gtii@yandex.ru"
+sender_email = ""
+receiver_email = ""
 password = input("Type your password and press enter: ")
 msg = MIMEMultipart()
 msg['Subject'] = "Сервис по автоматической рассылке"
@@ -19,10 +19,8 @@ msg['From'] = "Приложение для рассылки писем сотр�
     # file = MIMEApplication(f.read(), Name=basename("New Text Document.txt"))  это вариант для добавление txt файлов
 # msg.attach(file)
 # text = """"\
-   # "Чыки бамбони " \
-    #   "Напоминаем, что в последний день в Минском офисе дд/мм/гггг вам нужно подойти туда " \
-     #  "в Волну в 925 кабинет (Staff Records) " \
-     #  "и вот сюда ас велл " \
+   # " " \
+    #   
       # """
 
 
@@ -30,10 +28,7 @@ html = """\
 <html>
   <body>
     <p>Добрый день,<br>
-       Напоминаем, что в последний день в Минском офисе дд/мм/гггг вам нужно подойти туда<br>
-       в Волну в 925 кабинет (Staff Records)<br>
-       и вот сюда <br>
-       <a href="https://lesta.ru/ru">Лестовики</a>  
+       
     </p>
   </body>
 </html>
