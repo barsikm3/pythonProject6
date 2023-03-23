@@ -15,7 +15,7 @@ def send_email():
     port = 587  # For starttls
     smtp_server = "smtp.lesta.group"
     sender_email = email_entry.get()
-    receiver_email = "g_anapreenko@lesta.group"
+    receiver_email = ""
     password = password_entry.get()
     msg = MIMEMultipart()
     msg['Subject'] = "Сервис по автоматической рассылке"
